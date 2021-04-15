@@ -13,18 +13,19 @@
 
     <ul>
         <li>7 second ad</li>
-        <li>then mp3 stream</li>
+        <li>livestream  stream</li>
     </ul>
 
-    <video id="my-video" class="video-js" controls preload="auto" width="300" height="150" data-setup="{}" poster="poster.png">
-        <source src="https://tfciptv-lh.akamaihd.net/i/audioonlytest_1@410329/master.m3u8" type="application/x-mpegURL" />
+
+    <video id="my-video"  class="video-js vjs-default-skin" controls preload="auto" width="300" height="150">
+        <source src="https://iwantpradals-lh.akamaihd.net/i/audioonlytest_1@579314/master.m3u8" type="application/x-mpegURL" />
         <p class="vjs-no-js">
             To view this video please enable JavaScript, and consider upgrading to a
             web browser that
             <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
         </p>
-
     </video>
+
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
     <script src="node_modules/videojs-contrib-ads/dist/videojs.ads.js"></script>
@@ -58,7 +59,8 @@
         }
 
         player.one(startEvent, function () {
-            // alert('hello I am being tapped from mobile'); player.ima.initializeAdDisplayContainer();
+            // alert('hello I am being tapped from mobile');
+            player.ima.initializeAdDisplayContainer();
             player.ima.requestAds();
             player.play();
         });
