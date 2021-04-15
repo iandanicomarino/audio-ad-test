@@ -1,0 +1,20 @@
+<html>
+
+<head>
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+</head>
+
+<body>
+    <video-js id=example-video width=960 height=540 class="vjs-default-skin" controls>
+        <source src="https://iwantpradals-lh.akamaihd.net/i/audioonlytest_1@579314/master.m3u8"
+            type="application/x-mpegURL">
+    </video-js>
+    
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script>
+        var player = videojs('example-video');
+        player.play();
+    </script>
+</body>
+
+</html>
