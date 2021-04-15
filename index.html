@@ -1,0 +1,69 @@
+<html>
+
+<head>
+    <link href="/node_modules/videojs-ima/dist/videojs.ima.css" />
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <link href="/node_modules/videojs-contrib-ads/dist//videojs.ads.css" />
+</head>
+
+<body>
+
+    <h1>Test Audio Ad</h1>
+
+    <ul>
+        <li>7 second ad</li>
+        <li>then mp3 stream</li>
+    </ul>
+
+    <audio id="my-video" class="video-js" controls preload="auto" width="300" height="50" data-setup="{}">
+        <source src="sampleaudio.mp3" type="audio/mp3" />
+        <p class="vjs-no-js">
+            To view this video please enable JavaScript, and consider upgrading to a
+            web browser that
+            <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+        </p>
+
+    </audio>
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <script src="node_modules/videojs-contrib-ads/dist/videojs.ads.js"></script>
+    <script src="node_modules/videojs-ima/dist/videojs.ima.js"></script>
+
+    <script>
+        var player = videojs('my-video');
+        var options = {
+            id: "my-video",
+            adTagUrl: 'https://pubads.g.doubleclick.net/gampad/ads?iu=/2744311/ABS_TV2_VideoPlayer/Entertainment_BBPilipinas_Video_Player&description_url=[placeholder]&tfcd=0&npa=0&ad_type=audio&sz=1x1&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator='
+        };
+        player.ima(options);
+
+        // Remove controls from the player on iPad to stop native controls from stealing
+        // our click
+        var contentPlayer = document.getElementById('content_video_html5_api');
+        if ((navigator.userAgent.match(/iPad/i) ||
+            navigator.userAgent.match(/Android/i)) &&
+            contentPlayer.hasAttribute('controls')) {
+            contentPlayer.removeAttribute('controls');
+        }
+
+        // Initialize the ad container when the video player is clicked, but only the
+        // first time it's clicked.
+        var startEvent = 'click';
+        if (navigator.userAgent.match(/iPhone/i) ||
+            navigator.userAgent.match(/iPad/i) ||
+            navigator.userAgent.match(/Android/i)) {
+            startEvent = 'tap';
+        }
+
+        player.one(startEvent, function () {
+            // alert('hello I am being tapped from mobile'); player.ima.initializeAdDisplayContainer();
+            player.ima.requestAds();
+            player.play();
+        });
+
+
+    </script>
+
+</body>
+
+</html>
